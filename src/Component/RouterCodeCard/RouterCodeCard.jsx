@@ -33,6 +33,11 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(\`https://jsonplaceholder.typicode.com/posts/\${params.id}\`),
       },
+      {
+      path:"/updateBlog/:id",
+      element:<UpdateBlog></UpdateBlog>,
+      loader:({params})=>fetch(\`https://Blog-store-672.vercel.app/blog/\${params.id}\`)
+    },
     ],
   },
   {
