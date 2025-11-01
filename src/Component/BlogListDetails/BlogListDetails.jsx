@@ -10,24 +10,31 @@ export default function BlogListDetails() {
         <pre className="text-left font-mono text-sm bg-gray-100 p-3 rounded-b overflow-x-auto overflow-y-auto h-full text-gray-800">
           <code>
 {`
- const BlogListDetails = () => {
+ import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { IoArrowBackSharp } from "react-icons/io5";
+
+const BlogListDetails = () => {
   const blogs = useLoaderData();
-  const {id, title, body } = blogs;
+  const { id, title, body } = blogs;
   const navigate = useNavigate();
-  console.log(blogs);
+
   return (
-    <div className="return">
-      <Link to="#" onClick={() => navigate(-1)}>
-        <h2>
-          <IoArrowBackSharp className="icon" />
-          Back to Home
-        </h2>
+    <div className="text-center mt-5 flex flex-col items-center">
+      <Link
+        to="#"
+        onClick={() => navigate(-1)}
+        className="flex items-center gap-2 text-indigo-600 hover:text-indigo-800 transition-colors duration-200"
+      >
+        <IoArrowBackSharp className="text-3xl" />
+        <h2 className="text-lg font-medium">Back to Home</h2>
       </Link>
-      <div className="contained">
-        <h3 className="blog-title">Blog No: {id}</h3>
-        <h1>{title}</h1>
-        <h3>{body}</h3>
-        <Link to={\`updateBlog/\${id}\`}>
+
+      <div className="flex flex-col gap-3 border border-indigo-200 p-6 mt-8 mb-10 w-full max-w-2xl mx-auto rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+        <h3 className="text-gray-500 text-sm font-medium">Blog No: {id}</h3>
+        <h1 className="text-3xl font-bold text-gray-800">{title}</h1>
+        <h3 className="text-lg text-gray-700 leading-relaxed">{body}</h3>
+        
+<Link to={\`updateBlog/\${id}\`}>
             <button className="btn">Edit</button>
         </Link>
       </div>
